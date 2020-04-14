@@ -170,7 +170,6 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 func Apagar(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
-
 	err := api.ApagarMensagem(id)
 	if err != nil {
 		mensagemErro := fmt.Sprintf("%s: %s", "Erro no parse do formulário", err)
