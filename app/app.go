@@ -33,7 +33,7 @@ func (a *App) Initialize() {
 func (a *App) setRouters() {
 
 	a.Get("/health", a.handleRequest(handler.Health))
-	a.Get("/home", a.handleRequest(handler.Home))
+	a.Get("/", a.handleRequest(handler.Home))
 	a.Get("/new", a.handleRequest(handler.New))
 	a.Post("/insert", a.handleRequest(handler.Insert))
 }

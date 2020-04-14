@@ -2,13 +2,13 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "go-message-api-template",
+        "name": "go-message-send-template",
         "annotations": {
             "description": "Template para deploy da aplicação Message API",
             "iconClass": "icon-go-gopher",
             "openshift.io/display-name": "Aplicação Message API",
-            "openshift.io/documentation-url": "https://github.com/marceloagmelo/go-message-api.git",
-            "tags": "runtime,instant-app,golang,rabbitmq"
+            "openshift.io/documentation-url": "https://github.com/marceloagmelo/go-message-send.git",
+            "tags": "runtime,instant-app,golang"
         }
     },
     "objects": [
@@ -51,7 +51,7 @@
                 "name": "${APP_NAME}"
             },
             "spec": {
-                "path": "/go-message/api/v1",
+                "path": "/go-message",
                 "tls": {
                     "termination": "edge"
                 },
@@ -122,67 +122,11 @@
                                         "value": "America/Sao_Paulo"
                                     },
                                     {
-                                        "name": "MYSQL_HOSTNAME",
-                                        "value": "${MYSQL_HOSTNAME}"
-                                    },
-                                    {
-                                        "name": "MYSQL_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "key": "database-user",
-                                                "name": "${MYSQL_SECRET}"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PASSWORD",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "key": "database-password",
-                                                "name": "${MYSQL_SECRET}"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "MYSQL_PORT",
-                                        "value": "${MYSQL_PORT}"
-                                    },
-                                    {
-                                        "name": "MYSQL_DATABASE",
-                                        "value": "${MYSQL_DATABASE}"
-                                    },
-                                    {
-                                        "name": "RABBITMQ_HOSTNAME",
-                                        "value": "${RABBITMQ_HOSTNAME}"
-                                    },
-                                    {
-                                        "name": "RABBITMQ_USER",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "key": "username",
-                                                "name": "${RABBITMQ_SECRET}"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "RABBITMQ_PASS",
-                                        "valueFrom": {
-                                            "secretKeyRef": {
-                                                "key": "password",
-                                                "name": "${RABBITMQ_SECRET}"
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "RABBITMQ_PORT",
-                                        "value": "${RABBITMQ_PORT}"
-                                    },
-                                    {
-                                        "name": "RABBITMQ_VHOST",
-                                        "value": "${RABBITMQ_VHOST}"
+                                        "name": "API_SERVICE_URL",
+                                        "value": "${API_SERVICE_URL}"
                                     }
                                 ],
-                                "image": "marceloagmelo/go-message-api",
+                                "image": "marceloagmelo/go-message-send",
                                 "imagePullPolicy": "Always",
                                 "name": "${APP_NAME}",
                                 "ports": [
@@ -195,7 +139,7 @@
                                   "timeoutSeconds": 1,
                                   "initialDelaySeconds": 15,
                                   "httpGet": {
-                                    "path": "/go-message/api/v1/health",
+                                    "path": "/go-message/",
                                     "port": 8080
                                   }
                                 },
@@ -267,7 +211,7 @@
             "displayName": "Nome da aplicação",
             "description": "Nome da aplicação",
             "required": true,
-            "value": "go-message-api"
+            "value": "go-message-send"
         },
         {
             "name": "MYSQL_HOSTNAME",
@@ -325,6 +269,6 @@
         }
     ],
     "labels": {
-        "template": "go-message-api-template"
+        "template": "go-message-send-template"
     }
 }
