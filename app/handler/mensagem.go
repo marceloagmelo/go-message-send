@@ -3,9 +3,9 @@ package handler
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/marceloagmelo/go-message-send/api"
 	"github.com/marceloagmelo/go-message-send/logger"
 	"github.com/marceloagmelo/go-message-send/models"
@@ -168,8 +168,8 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 
 //Apagar mensagem
 func Apagar(w http.ResponseWriter, r *http.Request) {
-	log.Println("ENTREI")
-	id := r.URL.Query().Get("id")
+	vars := mux.Vars(r)
+	id := vars["id"]
 
 	err := api.ApagarMensagem(id)
 	if err != nil {
@@ -186,5 +186,8 @@ func Apagar(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
+	mensagem := fmt.Sprintf("Mensagem %v apagada com sucesso!", id)
+	logger.Info.Println(mensagem)
+
 	http.Redirect(w, r, "/", 301)
 }

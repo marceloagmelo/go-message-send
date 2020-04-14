@@ -47,11 +47,14 @@
 </body>
 
 <script>
-    function onDelete(id) {
-        let resposta = confirm("Tem certeza que deseja deletar essa mensagem?")
-        if (resposta) {
-            window.location = "/apagar/" + id
-        }
+    function onDelete(pk) {
+        $.ajax({
+            url: "/apagar/" + pk,
+            method: "delete",
+            success: function(dataRaw) {
+                $("#mensagem-row-" + pk).remove()
+            }
+        })
     }
 </script>
 

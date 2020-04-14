@@ -104,9 +104,7 @@ func deleteRequest(endpoint string) error {
 		logger.Erro.Println(mensagem)
 		return err
 	}
-
-	var bufferDelete bytes.Buffer
-	resposta.Write(&bufferDelete)
+	defer resposta.Body.Close()
 
 	return nil
 }
@@ -194,7 +192,7 @@ func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensag
 
 //ApagarMensagem apagar mensagem
 func ApagarMensagem(id string) error {
-	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/apagar" + id
+	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/apagar/" + id
 
 	err := deleteRequest(endpoint)
 	if err != nil {
