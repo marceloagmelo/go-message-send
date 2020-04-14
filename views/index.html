@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="jumbotron" style="margin-top: 200px;">
-            <a href="/go-message/new" style="margin-top: 20px;" class="btn btn-success btn-lg">Adicionar Mensagem</a>
+            <a href="/new" style="margin-top: 20px;" class="btn btn-success btn-lg">Adicionar Mensagem</a>
             <div class="container">
                 <h1 class="text-center">{{.titulo}}</h1>
                 
@@ -45,6 +45,16 @@
         </div>
     </div>
 </body>
+
+<script>
+    function onDelete(id) {
+        let resposta = confirm("Tem certeza que deseja deletar essa mensagem?")
+        if (resposta) {
+            window.location = "/apagar/" + id
+        }
+    }
+</script>
+
 </html>
 
 {{end}}

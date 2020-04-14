@@ -79,6 +79,38 @@ func postRequest(endpoint string, mensagem models.Mensagem) (*http.Response, err
 	return resposta, nil
 }
 
+// deleteRequest requisição para deletar
+func deleteRequest(endpoint string) error {
+	tr := &http.Transport{
+		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+	}
+	defer tr.CloseIdleConnections()
+
+	cliente := &http.Client{
+		Transport: tr,
+		Timeout:   time.Second * 180,
+	}
+
+	request, err := http.NewRequest("DELETE", endpoint, nil)
+	if err != nil {
+		mensagem := fmt.Sprintf("%s: %s", "Erro ao criar um request", err.Error())
+		logger.Erro.Println(mensagem)
+		return err
+	}
+
+	resposta, err := cliente.Do(request)
+	if err != nil {
+		mensagem := fmt.Sprintf("%s: %s", "Erro ao abrir o request", err.Error())
+		logger.Erro.Println(mensagem)
+		return err
+	}
+
+	var bufferDelete bytes.Buffer
+	resposta.Write(&bufferDelete)
+
+	return nil
+}
+
 //Health testar conexão com a API
 func Health() (mensagemHealth models.MensagemHealth, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/health"
@@ -158,4 +190,15 @@ func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensag
 		}
 	}
 	return mensagemRetorno, nil
+}
+
+//ApagarMensagem apagar mensagem
+func ApagarMensagem(id string) error {
+	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/apagar" + id
+
+	err := deleteRequest(endpoint)
+	if err != nil {
+		return err
+	}
+	return nil
 }

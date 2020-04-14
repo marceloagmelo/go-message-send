@@ -51,7 +51,6 @@
                 "name": "${APP_NAME}"
             },
             "spec": {
-                "path": "/go-message",
                 "tls": {
                     "termination": "edge"
                 },
@@ -139,7 +138,7 @@
                                   "timeoutSeconds": 1,
                                   "initialDelaySeconds": 15,
                                   "httpGet": {
-                                    "path": "/go-message/",
+                                    "path": "/health",
                                     "port": 8080
                                   }
                                 },
@@ -147,7 +146,7 @@
                                   "timeoutSeconds": 1,
                                   "initialDelaySeconds": 15,
                                   "httpGet": {
-                                    "path": "/go-message/api/v1/health",
+                                    "path": "/health",
                                     "port": 8080
                                   }
                                 },

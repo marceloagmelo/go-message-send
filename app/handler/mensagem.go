@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 
 	"github.com/marceloagmelo/go-message-send/api"
@@ -163,4 +164,27 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+}
+
+//Apagar mensagem
+func Apagar(w http.ResponseWriter, r *http.Request) {
+	log.Println("ENTREI")
+	id := r.URL.Query().Get("id")
+
+	err := api.ApagarMensagem(id)
+	if err != nil {
+		mensagemErro := fmt.Sprintf("%s: %s", "Erro no parse do formulário", err)
+		data := map[string]interface{}{
+			"titulo":       "Lista de Mensagens",
+			"mensagemErro": mensagemErro,
+		}
+
+		err := view.ExecuteTemplate(w, "Erro", data)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		return
+	}
+	http.Redirect(w, r, "/", 301)
 }

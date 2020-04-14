@@ -22,11 +22,11 @@ type App struct {
 // Initialize initializes the app with predefined configuration
 func (a *App) Initialize() {
 	a.Router = mux.NewRouter()
-	subRouter = a.Router.PathPrefix("/go-message").Subrouter()
+	//subRouter = a.Router.PathPrefix("/go-message-send").Subrouter()
 
 	a.Router.PathPrefix(staticDir).Handler(http.StripPrefix(staticDir, http.FileServer(http.Dir("."+staticDir))))
-	a.setRouters()
 
+	a.setRouters()
 }
 
 // setRouters sets the all required routers
@@ -36,26 +36,27 @@ func (a *App) setRouters() {
 	a.Get("/", a.handleRequest(handler.Home))
 	a.Get("/new", a.handleRequest(handler.New))
 	a.Post("/insert", a.handleRequest(handler.Insert))
+	a.Delete("/apagar/{id}", a.handleRequest(handler.Apagar))
 }
 
 // Get wraps the router for GET method
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	subRouter.HandleFunc(path, f).Methods("GET")
+	a.Router.HandleFunc(path, f).Methods("GET")
 }
 
 // Post wraps the router for POST method
 func (a *App) Post(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	subRouter.HandleFunc(path, f).Methods("POST")
+	a.Router.HandleFunc(path, f).Methods("POST")
 }
 
 // Put wraps the router for PUT method
 func (a *App) Put(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	subRouter.HandleFunc(path, f).Methods("PUT")
+	a.Router.HandleFunc(path, f).Methods("PUT")
 }
 
 // Delete wraps the router for DELETE method
 func (a *App) Delete(path string, f func(w http.ResponseWriter, r *http.Request)) {
-	subRouter.HandleFunc(path, f).Methods("DELETE")
+	a.Router.HandleFunc(path, f).Methods("DELETE")
 }
 
 // Run the app on it's router
