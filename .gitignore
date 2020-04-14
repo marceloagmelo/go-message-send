@@ -1,0 +1,6 @@
+# Arquivo binario
+go-message-send
+
+# Vendor
+vendor/
+.vendor-new/
