@@ -214,58 +214,11 @@
             "value": "go-message-send"
         },
         {
-            "name": "MYSQL_HOSTNAME",
-            "displayName": "Nome do serviço do mysql",
-            "description": "Nome do serviço do mysql",
-            "value": "mysqldb",
+            "name": "API_SERVICE_URL",
+            "displayName": "Nome do serviço de mensagem",
+            "description": "Nome do serviço de mensagem",
+            "value": "http://go-message-api:8080",
             "required": true
-        },
-        {
-            "name": "MYSQL_SECRET",
-            "displayName": "Secret do mysql",
-            "description": "Secret do mysql",
-            "value": "mysqldb",
-            "required": true
-        },
-        {
-            "name": "MYSQL_PORT",
-            "displayName": "Porta do banco de dados",
-            "description": "Porta do banco de dados",
-            "value": "3306",
-            "required": true
-        },
-        {
-            "name": "MYSQL_DATABASE",
-            "displayName": "Nome do banco de dados",
-            "description": "Nome do banco de dados",
-            "value": "mysqldbsample",
-            "required": true
-        },
-        {
-            "displayName": "Nome do serviço do rabbitmq",
-            "description": "Nome do serviço do rabbitmq",
-            "name": "RABBITMQ_HOSTNAME",
-            "value": "rabbitmq",
-            "required": true
-        },
-        {
-            "description": "Secret do rabbitmq",
-            "displayName": "Secret do rabbitmq",
-            "name": "RABBITMQ_SECRET",
-            "value": "rabbitmq-secret"
-        },
-        {
-            "name": "RABBITMQ_PORT",
-            "displayName": "Porta do rabbitmq",
-            "description": "Porta do rabbitmq",
-            "value": "5672",
-            "required": true
-        },
-        {
-            "displayName": "VHost",
-            "description": "VHost",
-            "name": "RABBITMQ_VHOST",
-            "value": "/"
         }
     ],
     "labels": {
