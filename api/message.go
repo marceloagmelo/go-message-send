@@ -73,10 +73,10 @@ func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensag
 	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/criar"
 
 	resposta, err := utils.PostRequest(endpoint, novaMensagem)
-	defer resposta.Body.Close()
 	if err != nil {
 		return mensagemRetorno, err
 	}
+	defer resposta.Body.Close()
 	if resposta.StatusCode == http.StatusCreated {
 		corpo, err := ioutil.ReadAll(resposta.Body)
 		if err != nil {

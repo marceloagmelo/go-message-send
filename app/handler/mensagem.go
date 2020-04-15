@@ -55,28 +55,14 @@ func Health(w http.ResponseWriter, r *http.Request) {
 
 //Home primeira página
 func Home(w http.ResponseWriter, r *http.Request) {
-	mensagens, err := api.ListaMensagens()
-	if err != nil {
-		mensagemErro := fmt.Sprintf("%s: %s", "Erro ao listar todas as mensagens", err)
-		data := map[string]interface{}{
-			"titulo":       "Lista de Mensagens",
-			"mensagemErro": mensagemErro,
-		}
-
-		err := view.ExecuteTemplate(w, "Erro", data)
-		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
-			return
-		}
-		return
-	}
+	mensagens, _ := api.ListaMensagens()
 
 	data := map[string]interface{}{
 		"titulo":    "Lista de Mensagens",
 		"mensagens": mensagens,
 	}
 
-	err = view.ExecuteTemplate(w, "Index", data)
+	err := view.ExecuteTemplate(w, "Index", data)
 	if err != nil {
 		mensagemErro := fmt.Sprintf("%s: %s", "Erro ao chamar a página home", err)
 		data := map[string]interface{}{
