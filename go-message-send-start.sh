@@ -6,7 +6,7 @@ source setenv.sh
 echo "Subindo o go-message-send..."
 docker run -d --name go-message-send --network message-net  \
 -p 7070:8080 \
--e API_SERVICE_URL="http://localhost:8181" \
+-e API_SERVICE_URL="http://go-message-api:8080" \
 -e TZ=America/Sao_Paulo \
 marceloagmelo/go-message-send
 
