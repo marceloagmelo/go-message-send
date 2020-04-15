@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/marceloagmelo/go-message-api/variaveis"
+	"github.com/marceloagmelo/go-message-send/variaveis"
 )
 
 type writer struct {
