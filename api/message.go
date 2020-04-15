@@ -19,10 +19,10 @@ func Health() (mensagemHealth models.MensagemHealth, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/health"
 
 	resposta, err := utils.GetRequest(endpoint)
-	defer resposta.Body.Close()
 	if err != nil {
 		return mensagemHealth, err
 	}
+	defer resposta.Body.Close()
 	if resposta.StatusCode == 200 {
 		corpo, err := ioutil.ReadAll(resposta.Body)
 		if err != nil {
