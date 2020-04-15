@@ -121,7 +121,22 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 
 			mensagemRetorno, err := api.EnviarMensagem(mensagemForm)
 			if err != nil {
-				mensagemErro := fmt.Sprintf("%s: %s", "Erro ao listar todas as mensagens", err)
+				mensagemErro := fmt.Sprintf("%s: %s", "Erro ao enviar a mensagem", err)
+				data := map[string]interface{}{
+					"titulo":       "Lista de Mensagens",
+					"mensagemErro": mensagemErro,
+				}
+
+				err = view.ExecuteTemplate(w, "Erro", data)
+				if err != nil {
+					http.Error(w, err.Error(), http.StatusInternalServerError)
+					return
+				}
+				return
+			}
+
+			if mensagemRetorno.ID == 0 {
+				mensagemErro := fmt.Sprintf("%s", "Erro ao enviar a mensagem, favor veja o log da api.")
 				data := map[string]interface{}{
 					"titulo":       "Lista de Mensagens",
 					"mensagemErro": mensagemErro,
