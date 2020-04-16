@@ -51,13 +51,16 @@
 
 <script>
     function onDelete(pk) {
-        $.ajax({
-            url: "/apagar/" + pk,
-            method: "delete",
-            success: function(dataRaw) {
-                $("#mensagem-row-" + pk).remove()
-            }
-        })
+        let resposta = confirm("Tem certeza que deseja deletar essa mensagem?")
+        if (resposta) {
+                $.ajax({
+                url: "/apagar/" + pk,
+                method: "delete",
+                success: function(dataRaw) {
+                    $("#mensagem-row-" + pk).remove()
+                }
+            })
+        }
     }
 </script>
 
