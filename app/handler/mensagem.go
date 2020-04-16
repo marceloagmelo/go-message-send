@@ -164,6 +164,7 @@ func Enviar(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 		}
+		http.Redirect(w, r, "/", http.StatusCreated)
 	}
 }
 
@@ -189,5 +190,5 @@ func Apagar(w http.ResponseWriter, r *http.Request) {
 	mensagem := fmt.Sprintf("Mensagem %v apagada com sucesso!", id)
 	logger.Info.Println(mensagem)
 
-	http.Redirect(w, r, "/", 301)
+	http.Redirect(w, r, "/", http.StatusAccepted)
 }
