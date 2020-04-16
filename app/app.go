@@ -35,7 +35,7 @@ func (a *App) setRouters() {
 	a.Get("/health", a.handleRequest(handler.Health))
 	a.Get("/", a.handleRequest(handler.Home))
 	a.Get("/new", a.handleRequest(handler.New))
-	a.Post("/insert", a.handleRequest(handler.Insert))
+	a.Post("/enviar", a.handleRequest(handler.Enviar))
 	a.Delete("/apagar/{id}", a.handleRequest(handler.Apagar))
 }
 

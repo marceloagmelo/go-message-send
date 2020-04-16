@@ -89,8 +89,8 @@ func New(w http.ResponseWriter, r *http.Request) {
 	view.ExecuteTemplate(w, "New", data)
 }
 
-//Insert mensagem
-func Insert(w http.ResponseWriter, r *http.Request) {
+//Enviar mensagem
+func Enviar(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 
 		err := r.ParseForm()

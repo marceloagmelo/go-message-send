@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-# Teste de conexao
+# Envio de mensagem
 echo "Finalizando o go-message-send..."
 docker rm -f marceloagmelo/go-message-send

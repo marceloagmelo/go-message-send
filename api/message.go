@@ -8,7 +8,6 @@ import (
 
 	"github.com/marceloagmelo/go-message-send/logger"
 	"github.com/marceloagmelo/go-message-send/models"
-	"github.com/marceloagmelo/go-message-send/utils"
 	"github.com/marceloagmelo/go-message-send/variaveis"
 )
 
@@ -18,7 +17,7 @@ var api = "go-message/api/v1"
 func Health() (mensagemHealth models.MensagemHealth, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/health"
 
-	resposta, err := utils.GetRequest(endpoint)
+	resposta, err := GetRequest(endpoint)
 	if err != nil {
 		return mensagemHealth, err
 	}
@@ -45,7 +44,7 @@ func Health() (mensagemHealth models.MensagemHealth, erro error) {
 func ListaMensagens() (mensagens models.Mensagens, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/mensagens"
 
-	resposta, err := utils.GetRequest(endpoint)
+	resposta, err := GetRequest(endpoint)
 	if err != nil {
 		return nil, err
 	}
@@ -70,9 +69,9 @@ func ListaMensagens() (mensagens models.Mensagens, erro error) {
 
 //EnviarMensagem enviar a mensagem
 func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensagem, erro error) {
-	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/criar"
+	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/enviar"
 
-	resposta, err := utils.PostRequest(endpoint, novaMensagem)
+	resposta, err := PostRequest(endpoint, novaMensagem)
 	if err != nil {
 		return mensagemRetorno, err
 	}
@@ -99,7 +98,7 @@ func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensag
 func ApagarMensagem(id string) error {
 	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/apagar/" + id
 
-	err := utils.DeleteRequest(endpoint)
+	err := DeleteRequest(endpoint)
 	if err != nil {
 		return err
 	}

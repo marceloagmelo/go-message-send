@@ -30,6 +30,7 @@ COPY --from=builder $APP_BUILDER/go-message-send $APP_HOME/go-message-send
 COPY docker-container-start.sh $APP_HOME
 COPY views $APP_HOME/views
 COPY static $APP_HOME/static
+COPY Dockerfile $APP_HOME/Dockerfile
 
 RUN apk add --no-cache ca-certificates tzdata bash && \
     addgroup -g $GID -S $USER && \

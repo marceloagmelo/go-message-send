@@ -20,7 +20,7 @@
     <div class="alert alert-danger" id="alerta-error">
         <strong>{{.mensagemErro}}</strong>
     </div>            
-    <form method="POST" action="/insert">
+    <form method="POST" action="/enviar">
         <input type="hidden" id="mensagem" name="mensagem" value="{{.mensagem}}"/>
         <input type="hidden" id="mensagemErro" name="mensagemErro" value="{{.mensagemErro}}"/>
         <div class="row">
