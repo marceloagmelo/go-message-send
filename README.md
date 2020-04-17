@@ -1,6 +1,6 @@
 # Enviar Mensagem usando Golang, RabbitMQ e MySQL
 
-Aplicação Web que permite cadastrar mensagem, esta aplicação utiliza os serviços  [Message API](https://github.com/marceloagmelo/go-message-api). Este serviço possuem alguma funcionalidades.
+Aplicação Web que permite cadastrar mensagem, esta aplicação utiliza os serviços  [Message API](https://github.com/marceloagmelo/go-message-api). Esta aplicação possue as seguintes funcionalidades.
 
 - [Listar Mensagens](#listar-mensagens)
 - [Cadastrar Mensagem](#enviar-mensagem)
@@ -47,7 +47,7 @@ PRIMARY KEY (id)
 http://localhost:7070
 ```
 
-## Finalizar a Aplicação Message API
+## Finalizar a Aplicação Message Send
 ```
 ./go-message-send-stop.sh
 ```
