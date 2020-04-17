@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
-# Envio de mensagem
+# Message API
 echo "Finalizando o go-message-send..."
-docker rm -f marceloagmelo/go-message-send
+docker rm -f go-message-send
+
