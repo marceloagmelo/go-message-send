@@ -11,7 +11,7 @@ Aplicação Web que permite cadastrar mensagem, esta aplicação utiliza os serv
 # Instalação
 
 ```
-cd go-message-send
+go get -v github.com/marceloagmelo/go-message-send
 ```
 ```
 cd go-message-send
