@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-docker build -t marceloagmelo/go-message-send .
+source setenv.sh
+
+docker build -t $DOCKER_REGISTRY/go-message-send .
