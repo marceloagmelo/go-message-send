@@ -20,12 +20,12 @@ cd go-message-send
 ## Build da Aplicação
 
 ```
-./go-message-send-image-build.sh
+./image-build.sh
 ```
 
 ## Iniciar as Aplicações de Dependências
 ```
-./go-message-send-dependecy.sh
+./dependecy-start.sh
 ```
 
 ## Preparar o MySQL
@@ -43,22 +43,22 @@ status INTEGER,
 PRIMARY KEY (id)
 );
 
-## Iniciar a Aplicação Message Send
+## Iniciar a Aplicação
 ```
-./go-message-send-start.sh
+./start.sh
 ```
 ```
 http://localhost:7070
 ```
 
-## Finalizar a Aplicação Message Send
+## Finalizar a Aplicação
 ```
-./go-message-send-stop.sh
+./stop.sh
 ```
 
 ## Finalizar a Todas as Aplicações
 ```
-./go-message-send-stop-all.sh
+./stop-all.sh
 ```
 
 # Fucionalidades

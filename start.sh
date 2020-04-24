@@ -11,12 +11,12 @@ if [ "$?" != 0 ]; then
 fi
 
 # Rabbitmq message send
-echo "Subindo o go-message-send..."
-docker run -d --name go-message-send --network $DOCKER_NETWORK  \
+echo "Subindo o ${APP_NAME}..."
+docker run -d --name ${APP_NAME} --network $DOCKER_NETWORK  \
 -p 7070:8080 \
--e API_SERVICE_URL="http://go-message-api:8080" \
+-e API_SERVICE_URL=${API_SERVICE_URL} \
 -e TZ=America/Sao_Paulo \
-marceloagmelo/go-message-send
+${DOCKER_REGISTRY}/${APP_NAME}
 
 # Listando os containers
 docker ps

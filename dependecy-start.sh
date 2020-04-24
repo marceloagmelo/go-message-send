@@ -30,8 +30,8 @@ docker run -d --name rabbitmq --network $DOCKER_NETWORK  \
 rabbitmq:3.6.16-management
 
 # Message API
-echo "Subindo o go-message-api..."
-docker run -d --name go-message-api --network $DOCKER_NETWORK \
+echo "Subindo o ${APP_NAME_API}..."
+docker run -d --name ${APP_NAME_API} --network $DOCKER_NETWORK \
 -p 8181:8080 \
 -e MYSQL_USER=${MYSQL_USER} \
 -e MYSQL_PASSWORD=${MYSQL_PASSWORD} \
@@ -44,7 +44,7 @@ docker run -d --name go-message-api --network $DOCKER_NETWORK \
 -e RABBITMQ_PORT=${RABBITMQ_PORT} \
 -e RABBITMQ_VHOST=${RABBITMQ_VHOST} \
 -e TZ=America/Sao_Paulo \
-marceloagmelo/go-message-api
+${DOCKER_REGISTRY}/${APP_NAME_API}
 
 # Listando os containers
 docker ps
