@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/marceloagmelo/go-message-send/api"
 	"github.com/marceloagmelo/go-message-send/logger"
-	"github.com/marceloagmelo/go-message-send/models"
+	"github.com/marceloagmelo/go-message-send/model"
 )
 
 var view = template.Must(template.ParseGlob("views/*.html"))
@@ -113,7 +113,7 @@ func Enviar(w http.ResponseWriter, r *http.Request) {
 		texto := r.FormValue("texto")
 
 		if titulo != "" && texto != "" {
-			var mensagemForm models.Mensagem
+			var mensagemForm model.Mensagem
 			mensagemForm.ID = 0
 			mensagemForm.Titulo = titulo
 			mensagemForm.Texto = texto

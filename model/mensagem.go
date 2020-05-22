@@ -1,4 +1,4 @@
-package models
+package model
 
 //Mensagem estrutura de mensagem
 type Mensagem struct {

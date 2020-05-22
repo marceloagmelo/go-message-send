@@ -7,14 +7,14 @@ import (
 	"net/http"
 
 	"github.com/marceloagmelo/go-message-send/logger"
-	"github.com/marceloagmelo/go-message-send/models"
+	"github.com/marceloagmelo/go-message-send/model"
 	"github.com/marceloagmelo/go-message-send/variaveis"
 )
 
 var api = "go-message/api/v1"
 
 //Health testar conexão com a API
-func Health() (mensagemHealth models.MensagemHealth, erro error) {
+func Health() (mensagemHealth model.MensagemHealth, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/health"
 
 	resposta, err := GetRequest(endpoint)
@@ -29,7 +29,7 @@ func Health() (mensagemHealth models.MensagemHealth, erro error) {
 			logger.Erro.Println(mensagem)
 			return mensagemHealth, err
 		}
-		mensagemHealth = models.MensagemHealth{}
+		mensagemHealth = model.MensagemHealth{}
 		err = json.Unmarshal(corpo, &mensagemHealth)
 		if err != nil {
 			mensagem := fmt.Sprintf("%s: %s", "Erro ao converter o retorno JSON", err.Error())
@@ -41,7 +41,7 @@ func Health() (mensagemHealth models.MensagemHealth, erro error) {
 }
 
 //ListaMensagens listar mensagens
-func ListaMensagens() (mensagens models.Mensagens, erro error) {
+func ListaMensagens() (mensagens model.Mensagens, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/mensagens"
 
 	resposta, err := GetRequest(endpoint)
@@ -56,7 +56,7 @@ func ListaMensagens() (mensagens models.Mensagens, erro error) {
 			logger.Erro.Println(mensagem)
 			return nil, err
 		}
-		mensagens = models.Mensagens{}
+		mensagens = model.Mensagens{}
 		err = json.Unmarshal(corpo, &mensagens)
 		if err != nil {
 			mensagem := fmt.Sprintf("%s: %s", "Erro ao converter o retorno JSON", err.Error())
@@ -68,7 +68,7 @@ func ListaMensagens() (mensagens models.Mensagens, erro error) {
 }
 
 //EnviarMensagem enviar a mensagem
-func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensagem, erro error) {
+func EnviarMensagem(novaMensagem model.Mensagem) (mensagemRetorno model.Mensagem, erro error) {
 	endpoint := variaveis.ApiURL + "/" + api + "/mensagem/enviar"
 
 	resposta, err := PostRequest(endpoint, novaMensagem)
@@ -83,7 +83,7 @@ func EnviarMensagem(novaMensagem models.Mensagem) (mensagemRetorno models.Mensag
 			logger.Erro.Println(mensagem)
 			return mensagemRetorno, err
 		}
-		mensagemRetorno = models.Mensagem{}
+		mensagemRetorno = model.Mensagem{}
 		err = json.Unmarshal(corpo, &mensagemRetorno)
 		if err != nil {
 			mensagem := fmt.Sprintf("%s: %s", "Erro ao converter o retorno JSON", err.Error())
